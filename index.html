@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting to FitBet App</title>
+    <script>
+        // Extract OAuth parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const oauthToken = urlParams.get('oauth_token');
+        const oauthVerifier = urlParams.get('oauth_verifier');
+        
+        // Redirect to your app
+        if (oauthToken && oauthVerifier) {
+            window.location.href = `fitbet://oauth-callback?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}`;
+            document.getElementById('status').textContent = 'Redirecting to app...';
+        } else {
+            document.getElementById('status').textContent = 'Error: Missing OAuth parameters';
+        }
+    </script>
+</head>
+<body>
+    <h2>Garmin OAuth Authentication</h2>
+    <p id="status">Processing authentication...</p>
+    <p>If you're not automatically redirected, please close this window and return to the app.</p>
+</body>
+</html>
